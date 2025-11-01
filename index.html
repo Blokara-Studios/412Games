@@ -5,25 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>412Games - Juegos Inspirados en 412</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> </head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+</head>
 <body class="dark-mode">
 
     <div id="preloader">
-        <div class="loader"></div>
-        <p>Cargando 412Games...</p>
+        <div class="spinner"></div>
+        <p class="loading-text">Cargando 412Games...</p>
     </div>
 
     <div id="welcome-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <div class="modal-text">
-                <h3>¡Bienvenido a 412Games!</h3>
+                <h3 class="modal-title">¡Bienvenido a 412Games! ⚽</h3>
                 <p>
-                    - **Estos juegos están inspirados o sacados totalmente directamente del programa 412.** Fueron creados para que tú los puedas disfrutar y jugar con tus amigos en casa.
+                    Estos juegos están inspirados o son versiones directas del contenido del **programa 412**. Fueron creados para que puedas disfrutarlos y jugar con tus amigos en casa.
                 </p>
-                <p class="disclaimer">
-                    **Nota Importante:** Esta página web no está asociada ni afiliada de ninguna manera al programa ni a los chicos que lo organizan.
-                </p>
+                <div class="disclaimer-box">
+                    **Nota Importante:** Esta web no está asociada ni afiliada de ninguna manera al programa ni a sus organizadores.
+                </div>
+                <button onclick="closeModal()" class="start-btn">¡Empezar a Jugar!</button>
             </div>
         </div>
     </div>
@@ -31,8 +33,8 @@
     <div id="game-info-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeGameInfoModal()">&times;</span>
-            <h3 id="info-modal-title"></h3>
-            <div id="info-modal-content">
+            <h3 id="info-modal-title" class="modal-title"></h3>
+            <div id="info-modal-content" class="modal-info-content">
                 </div>
             <button id="start-game-btn" class="start-btn" onclick="startGame('impostor.html')">¡Comenzar el Juego!</button>
         </div>
@@ -40,56 +42,68 @@
 
 
     <main id="main-content">
-        <header>
-            <h1>412Games</h1>
-            <p>Donde los juegos del stream se vuelven tuyos.</p>
+        <header class="main-header">
+            <h1 class="header-title">412Games</h1>
+            <p class="header-subtitle">Donde los juegos del stream se vuelven tuyos.</p>
         </header>
 
         <section class="games-section">
-            <h2>🎲 Nuestros Juegos</h2>
+            <h2 class="section-title">🎲 Nuestros Juegos</h2>
             <div class="game-list">
                 
                 <div class="game-card">
                     <img src="impostor.png" alt="Imagen del juego Impostor">
-                    <h3>Impostor</h3>
-                    <button onclick="showGameInfo('Impostor')">Jugar (o Info)</button>
+                    <h3 class="card-title">Impostor</h3>
+                    <p class="card-description">Descubre al espía entre los concursantes.</p>
+                    <button onclick="showGameInfo('Impostor')" class="info-button">Jugar / Info</button>
                 </div>
 
                 <div class="game-card">
                      <img src="mentiroso.png" alt="Imagen del juego Mentiroso">
-                     <h3>Mentiroso</h3>
-                     <button onclick="showGameInfo('Mentiroso')">Jugar (o Info)</button>
+                     <h3 class="card-title">Mentiroso</h3>
+                     <p class="card-description">Pon a prueba tus conocimientos y tu habilidad para mentir.</p>
+                     <button onclick="showGameInfo('Mentiroso')" class="info-button">Jugar / Info</button>
                      </div>
                 
                 <div class="game-card">
                     <img src="subasta_normal.png" alt="Imagen del juego Subasta Normal">
-                    <h3>Subasta Normal</h3>
-                    <button onclick="showGameInfo('Subasta')">Jugar (o Info)</button>
+                    <h3 class="card-title">Subasta de Fichajes</h3>
+                    <p class="card-description">Ficha a tu equipo de ensueño por la puja.</p>
+                    <button onclick="showGameInfo('Subasta')" class="info-button">Jugar / Info</button>
                     </div>
                 
-                <div class="game-card">
+                <div class="game-card coming-soon">
                     <img src="subasta_siluetas.png" alt="Imagen del juego Subasta de Siluetas">
-                    <h3>Subasta de Siluetas</h3>
-                    <button>Jugar (o Info)</button>
+                    <h3 class="card-title">Subasta de Siluetas</h3>
+                    <p class="card-description">Identifica al jugador ¡antes de que sea tarde!</p>
+                    <button disabled class="info-button disabled-button">Próximamente</button>
                 </div>
                 
             </div>
         </section>
 
         <section class="channels-section">
-            <h2>🔥 Canales del Programa 412</h2>
+            <h2 class="section-title">🔥 Canales del Programa 412</h2>
             <div class="channel-links">
                 <p>Sígue a los chicos y al programa en sus plataformas:</p>
-                <ul>
-                    <li>**Kick:** <a href="https://kick.com/lacobraaa" target="_blank">LaCobraaa</a> y <a href="https://kick.com/davooxeneize" target="_blank">Davooxeneize</a></li>
-                    <li>**YouTube:** <a href="https://www.youtube.com/@programa412" target="_blank">@programa412</a></li>
+                <ul class="social-list">
+                    <li>
+                        <span class="social-icon">🟣</span> 
+                        **Kick:** <a href="https://kick.com/lacobraaa" target="_blank">LaCobraaa</a> 
+                        y 
+                        <a href="https://kick.com/davooxeneize" target="_blank">Davooxeneize</a>
+                    </li>
+                    <li>
+                        <span class="social-icon">🔴</span> 
+                        **YouTube:** <a href="https://www.youtube.com/@programa412" target="_blank">@programa412</a>
+                    </li>
                 </ul>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 412Games. Todos los derechos reservados.</p>
+    <footer class="main-footer">
+        <p>&copy; 2025 412Games. Proyecto inspirado en la comunidad.</p>
     </footer>
 
     <script src="script.js"></script>
