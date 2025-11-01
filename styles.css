@@ -912,3 +912,116 @@ button:disabled {
     background-color: #444;
     margin: 30px 0;
 }
+/* --- MEDIA QUERIES PARA RESPONSIVE (MÓVIL) --- */
+
+@media (max-width: 768px) {
+    
+    /* Global: Reducir padding y tamaño de encabezados */
+    main {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+
+    /* Contenedores de Sección */
+    .game-section, #auction-setup, #auction-interface {
+        margin: 20px auto;
+        padding: 20px 15px;
+    }
+    
+    /* Index.html - Lista de Juegos */
+    .game-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .game-card {
+        width: 100%;
+        max-width: 300px; /* Asegurar que no se estire demasiado */
+        height: auto;
+        min-height: 320px; 
+    }
+    
+    /* Subasta.html - Tablero de Presupuestos */
+    .player-board {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .player-auction-card {
+        width: 90%;
+        max-width: 300px;
+        padding: 12px;
+    }
+    
+    /* Subasta.html - Acciones y Inputs */
+    .input-group-horizontal {
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start; /* Alinear etiquetas a la izquierda */
+        padding-left: 10%;
+    }
+    
+    .auction-actions-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .auction-actions-group select, 
+    .auction-actions-group button {
+        width: 90%; 
+    }
+    
+    .price-input {
+        width: 80%;
+        max-width: 200px;
+        font-size: 1.6em;
+    }
+    
+    /* Mentiroso.html - Dificultad */
+    .difficulty-selection {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .diff-btn {
+        width: 80%;
+        margin: auto;
+    }
+    
+    /* Mentiroso.html - Frase */
+    .phrase-text {
+        font-size: 1.4em;
+    }
+    
+    /* Impostor.html - Configuración */
+    #game-setup .input-group {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    /* Modal de Resultados */
+    .modal-content {
+        width: 90%;
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .results-table th, .results-table td {
+        padding: 8px;
+        font-size: 0.8em;
+    }
+    
+    /* Asegurar que los textos no sean demasiado grandes */
+    .player-score {
+        font-size: 1.8em;
+    }
+}
