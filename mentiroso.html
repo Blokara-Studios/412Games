@@ -9,53 +9,56 @@
 <body class="dark-mode">
 
     <main>
-        <h1>Juego: Mentiroso</h1>
+        <h1>Juego: ¡Mentiroso! 🤥</h1>
 
-        <section id="game-setup">
+        <section id="game-setup" class="game-section setup-section">
             <h2>1. Configuración de la Partida</h2>
             
-            <div>
+            <div class="setup-group">
                 <h3>Elige la Dificultad:</h3>
-                <button onclick="selectDifficulty('Facil')">Fácil</button>
-                <button onclick="selectDifficulty('Mediano')">Mediano</button>
-                <button onclick="selectDifficulty('Dificil')">Difícil</button>
+                <div class="difficulty-selection">
+                    <button class="diff-btn easy" onclick="selectDifficulty('Facil')">Fácil</button>
+                    <button class="diff-btn medium" onclick="selectDifficulty('Mediano')">Mediano</button>
+                    <button class="diff-btn hard" onclick="selectDifficulty('Dificil')">Difícil</button>
+                </div>
             </div>
-            <p style="margin-top: 15px;">Dificultad seleccionada: <span id="selected-difficulty" style="color: var(--primary-color);">---</span></p>
+            <p class="selection-info">Dificultad seleccionada: <strong id="selected-difficulty" style="color: var(--primary-color);">---</strong></p>
 
-            <div style="margin-top: 30px;">
+            <div class="setup-group player-input-group">
                 <h3>Número de Jugadores:</h3>
-                <input type="number" id="num-players" min="2" max="10" value="4" style="padding: 8px; font-size: 1.1em; width: 80px; text-align: center; border-radius: 5px; border: 1px solid var(--primary-color); background-color: var(--bg-dark); color: var(--text-light);">
+                <input type="number" id="num-players" min="2" max="10" value="4" class="styled-input">
             </div>
 
-            <button onclick="startGameSetup()" style="margin-top: 20px;">¡Listo! Comenzar el Juego</button>
-            <p id="setup-error-message" style="color: red; margin-top: 10px;"></p>
+            <button onclick="startGameSetup()" class="start-game-btn">¡Listo! Comenzar el Juego</button>
+            <p id="setup-error-message" class="error-message"></p>
         </section>
 
-        <section id="game-interface" style="display:none;">
+        <section id="game-interface" class="game-section" style="display:none;">
             <h2>2. ¡A Jugar!</h2>
             
-            <div id="current-phrase">
-                <p id="phrase-display">-- Haz clic en "Siguiente Frase" para comenzar --</p>
+            <div id="current-phrase" class="phrase-container">
+                <p class="phrase-label">Frase Actual:</p>
+                <p id="phrase-display" class="phrase-text">-- Haz clic en "Siguiente Frase" para comenzar --</p>
             </div>
 
-            <button onclick="loadNewPhrase()" style="margin-bottom: 30px;">Siguiente Frase</button>
+            <button onclick="loadNewPhrase()" class="nav-button next-phrase-btn">Siguiente Frase 🔄</button>
             
-            <h3>Marcador:</h3>
-            <div id="player-score-list" class="player-list">
+            <h3 class="score-title">Marcador y Asignación de Puntos:</h3>
+            <div id="player-score-list" class="player-score-list">
                 </div>
 
-            <div id="game-controls">
-                <button onclick="showResults()">🏆 Resultados</button>
-                <button onclick="window.location.href = 'index.html'" style="background-color: #555; color: white;">&#x2715; Salir</button>
-                <button onclick="resetFullGame()" style="background-color: #d85; color: white;">&#x21BA; Reset Total</button>
+            <div id="game-controls" class="game-controls-group">
+                <button onclick="showResults()" class="results-btn">🏆 Ver Resultados</button>
+                <button onclick="resetFullGame()" class="reset-btn">&#x21BA; Reset Total</button>
+                <button onclick="window.location.href = 'index.html'" class="exit-btn">&#x2715; Salir</button>
             </div>
         </section>
 
         <div id="results-modal" class="modal"> 
             <div class="modal-content">
                 <span class="close-btn" onclick="closeResultsModal()">&times;</span>
-                <h3>🏆 Resultados</h3>
-                <ul id="results-list" style="list-style: none; padding: 0;"></ul>
+                <h3 style="color: var(--primary-color);">🏆 Resultados Finales</h3>
+                <ul id="results-list" class="results-list"></ul>
             </div>
         </div>
 
