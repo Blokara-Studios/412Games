@@ -6,7 +6,8 @@
     <title>Impostor - 412Games</title>
     <link rel="stylesheet" href="styles.css"> 
     <style>
-        /* Estilos específicos para la página de Impostor (puedes mover esto a styles.css si quieres) */
+        /* --- ESTILOS ESPECÍFICOS PARA LA PÁGINA DE IMPOSTOR --- */
+        
         main {
             padding-top: 40px;
         }
@@ -14,26 +15,55 @@
         #game-setup, #role-assignment {
             padding: 40px;
             background-color: var(--bg-card);
-            border-radius: 10px;
+            border-radius: 12px; /* Ligeramente más redondeado */
             max-width: 600px;
             margin: 50px auto;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border-top: 3px solid var(--primary-color);
+        }
+        
+        #game-setup h2, #role-assignment h2 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Selección de Categoría */
+        .category-selection {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .category-selection button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 1.2em;
+            margin: 0; /* Quitamos el margen duplicado */
+            padding: 12px 25px;
+            font-size: 1.1em;
+            background-color: var(--secondary-color);
+            color: var(--text-light);
         }
-
+        
+        .category-selection button:hover {
+             background-color: var(--primary-color);
+             color: var(--bg-dark);
+        }
+        
+        /* Inputs de Configuración */
         .input-group {
-            margin: 15px 0;
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
         }
 
-        .input-group label, .input-group input {
-            display: block;
-            margin: 5px auto;
-            text-align: center;
+        .input-group label {
+            margin: 0;
+            font-weight: bold;
+            color: var(--text-light);
         }
 
         .input-group input {
@@ -41,9 +71,10 @@
             font-size: 1.1em;
             width: 80px;
             border-radius: 5px;
-            border: 1px solid var(--primary-color);
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            border: 2px solid var(--secondary-color);
+            background-color: #2a2a2a; /* Tono más claro que el fondo */
+            color: var(--primary-color);
+            text-align: center;
         }
 
         /* Estilo de la Carta (Role Card) */
@@ -52,12 +83,10 @@
             max-width: 400px;
             height: 450px;
             margin: 50px auto;
-            background-color: #f4f4f4;
-            color: var(--bg-dark);
             border-radius: 15px;
             perspective: 1000px; 
             cursor: pointer;
-            box-shadow: 0 10px 20px var(--shadow-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
         }
 
         .card-inner {
@@ -65,7 +94,7 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.6s;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transición más dinámica */
             transform-style: preserve-3d;
         }
 
@@ -77,44 +106,56 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden; 
-            backface-visibility: hidden;
+            backface-visibility: hidden; 
             border-radius: 15px;
             padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 1.5em;
             font-weight: bold;
         }
 
         .card-front {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: var(--bg-dark);
-            font-size: 2em;
-            background-image: linear-gradient(45deg, var(--primary-color) 0%, #ffdf9e 100%);
+            font-size: 2.2em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-front p:last-child {
+            font-size: 0.5em;
+            margin-top: 15px;
+            font-weight: normal;
         }
 
         .card-back {
-            background-color: #ffffff;
+            background-color: #fff; /* Fondo blanco para la revelación */
             color: var(--bg-dark);
             transform: rotateY(180deg);
+            border: 5px solid var(--bg-dark);
         }
         
         .role-title {
-            font-size: 2.5em;
+            font-size: 3em; /* Más grande para el rol */
             margin-bottom: 5px;
+            color: var(--error-color); /* Rojo para el impostor */
         }
         .role-detail {
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-weight: normal;
-            color: #555;
+            color: var(--secondary-color); /* Celeste para la palabra clave */
         }
+        
+        /* Estilos de Mensaje y Botones Finales */
         .start-message {
             margin-top: 30px;
-            font-size: 1.5em;
-            color: var(--primary-color);
+            font-size: 1.6em;
+            color: var(--success-color); /* Verde para el mensaje final */
+        }
+        
+        #final-actions button:first-child {
+            background-color: var(--secondary-color);
         }
         
     </style>
@@ -122,7 +163,7 @@
 <body class="dark-mode">
 
     <main>
-        <h1>Juego: Impostor</h1>
+        <h1>Juego: Impostor 🕵️</h1>
 
         <section id="game-setup">
             <h2>1. Elige una Categoría</h2>
@@ -132,24 +173,26 @@
                 <button onclick="selectCategory('Leyenda')">Leyenda</button>
             </div>
 
-            <div id="setup-inputs" style="display:none; margin-top: 20px;">
-                <p>Categoría seleccionada: <span id="selected-cat" style="color: var(--primary-color);"></span></p>
+            <div id="setup-inputs" style="display:none; margin-top: 30px;">
+                <p>Categoría seleccionada: <strong id="selected-cat" style="color: var(--primary-color);"></strong></p>
                 <div class="input-group">
                     <label for="num-players">Número de Jugadores:</label>
                     <input type="number" id="num-players" min="4" max="20" value="4">
-                </div>
-                <div class="input-group">
+                    
                     <label for="num-impostors">Número de Impostores:</label>
                     <input type="number" id="num-impostors" min="1" value="1">
                 </div>
                 <button onclick="startAssignment()">¡Listo! Iniciar Asignación</button>
-                <p id="error-message" style="color: red; margin-top: 10px;"></p>
+                <p id="error-message" style="color: var(--error-color); margin-top: 15px;"></p>
             </div>
         </section>
 
-<section id="role-assignment" style="display:none;">
+        <section id="role-assignment" style="display:none;">
             <h2>2. Revelación de Rol</h2>
-            <p>Participante <span id="current-player">1</span> de <span id="total-players">0</span>: Toca la carta para ver tu rol. ¡Que nadie vea tu pantalla!</p>
+            <p>
+                Participante <strong id="current-player">1</strong> de <strong id="total-players">0</strong>: 
+                <br>Toca la carta para ver tu rol. ¡Que nadie vea tu pantalla!
+            </p>
             
             <div id="role-card" class="role-card" onclick="flipCard()">
                 <div class="card-inner">
@@ -164,8 +207,10 @@
                 </div>
             </div>
 
-            <button id="next-player-btn" style="display:none;" onclick="nextPlayer()">Siguiente Jugador</button>
-            <p class="start-message" id="start-game-message" style="display:none;">¡Comiencen el juego en papel!</p>
+            <button id="next-player-btn" class="nav-button" style="display:none;" onclick="nextPlayer()">Siguiente Jugador</button>
+            <p class="start-message" id="start-game-message" style="display:none;">
+                ¡Roles asignados! Comiencen el juego en papel.
+            </p>
             
             <div id="final-actions" style="display:none; margin-top: 30px;">
                 <button onclick="resetGame()">&#x21BA; Volver a Jugar</button>
