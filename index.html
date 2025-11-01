@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>412Games - Juegos Inspirados en 412</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> </head>
+<body class="dark-mode">
+
+    <div id="preloader">
+        <div class="loader"></div>
+        <p>Cargando 412Games...</p>
+    </div>
+
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-text">
+                <h3>¡Bienvenido a 412Games!</h3>
+                <p>
+                    - **Estos juegos están inspirados o sacados totalmente directamente del programa 412.** Fueron creados para que tú los puedas disfrutar y jugar con tus amigos en casa.
+                </p>
+                <p class="disclaimer">
+                    **Nota Importante:** Esta página web no está asociada ni afiliada de ninguna manera al programa ni a los chicos que lo organizan.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="game-info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGameInfoModal()">&times;</span>
+            <h3 id="info-modal-title"></h3>
+            <div id="info-modal-content">
+                </div>
+            <button id="start-game-btn" class="start-btn" onclick="startGame('impostor.html')">¡Comenzar el Juego!</button>
+        </div>
+    </div>
+
+
+    <main id="main-content">
+        <header>
+            <h1>412Games</h1>
+            <p>Donde los juegos del stream se vuelven tuyos.</p>
+        </header>
+
+        <section class="games-section">
+            <h2>🎲 Nuestros Juegos</h2>
+            <div class="game-list">
+                
+                <div class="game-card">
+                    <img src="impostor.png" alt="Imagen del juego Impostor">
+                    <h3>Impostor</h3>
+                    <button onclick="showGameInfo('Impostor')">Jugar (o Info)</button>
+                </div>
+
+                <div class="game-card">
+                     <img src="mentiroso.png" alt="Imagen del juego Mentiroso">
+                     <h3>Mentiroso</h3>
+                     <button onclick="showGameInfo('Mentiroso')">Jugar (o Info)</button>
+                     </div>
+                
+                <div class="game-card">
+                    <img src="subasta_normal.png" alt="Imagen del juego Subasta Normal">
+                    <h3>Subasta Normal</h3>
+                    <button onclick="showGameInfo('Subasta')">Jugar (o Info)</button>
+                    </div>
+                
+                <div class="game-card">
+                    <img src="subasta_siluetas.png" alt="Imagen del juego Subasta de Siluetas">
+                    <h3>Subasta de Siluetas</h3>
+                    <button>Jugar (o Info)</button>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="channels-section">
+            <h2>🔥 Canales del Programa 412</h2>
+            <div class="channel-links">
+                <p>Sígue a los chicos y al programa en sus plataformas:</p>
+                <ul>
+                    <li>**Kick:** <a href="https://kick.com/lacobraaa" target="_blank">LaCobraaa</a> y <a href="https://kick.com/davooxeneize" target="_blank">Davooxeneize</a></li>
+                    <li>**YouTube:** <a href="https://www.youtube.com/@programa412" target="_blank">@programa412</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 412Games. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

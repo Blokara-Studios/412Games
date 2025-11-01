@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impostor - 412Games</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        /* Estilos específicos para la página de Impostor (puedes mover esto a styles.css si quieres) */
+        main {
+            padding-top: 40px;
+        }
+
+        #game-setup, #role-assignment {
+            padding: 40px;
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .category-selection button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label, .input-group input {
+            display: block;
+            margin: 5px auto;
+            text-align: center;
+        }
+
+        .input-group input {
+            padding: 8px;
+            font-size: 1.1em;
+            width: 80px;
+            border-radius: 5px;
+            border: 1px solid var(--primary-color);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        /* Estilo de la Carta (Role Card) */
+        .role-card {
+            width: 90%;
+            max-width: 400px;
+            height: 450px;
+            margin: 50px auto;
+            background-color: #f4f4f4;
+            color: var(--bg-dark);
+            border-radius: 15px;
+            perspective: 1000px; 
+            cursor: pointer;
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .role-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; 
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .card-front {
+            background-color: var(--primary-color);
+            color: var(--bg-dark);
+            font-size: 2em;
+            background-image: linear-gradient(45deg, var(--primary-color) 0%, #ffdf9e 100%);
+        }
+
+        .card-back {
+            background-color: #ffffff;
+            color: var(--bg-dark);
+            transform: rotateY(180deg);
+        }
+        
+        .role-title {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+        .role-detail {
+            font-size: 1.2em;
+            font-weight: normal;
+            color: #555;
+        }
+        .start-message {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: var(--primary-color);
+        }
+        
+    </style>
+</head>
+<body class="dark-mode">
+
+    <main>
+        <h1>Juego: Impostor</h1>
+
+        <section id="game-setup">
+            <h2>1. Elige una Categoría</h2>
+            <div class="category-selection">
+                <button onclick="selectCategory('Club')">Club</button>
+                <button onclick="selectCategory('Jugador')">Jugador</button>
+                <button onclick="selectCategory('Leyenda')">Leyenda</button>
+            </div>
+
+            <div id="setup-inputs" style="display:none; margin-top: 20px;">
+                <p>Categoría seleccionada: <span id="selected-cat" style="color: var(--primary-color);"></span></p>
+                <div class="input-group">
+                    <label for="num-players">Número de Jugadores:</label>
+                    <input type="number" id="num-players" min="4" max="20" value="4">
+                </div>
+                <div class="input-group">
+                    <label for="num-impostors">Número de Impostores:</label>
+                    <input type="number" id="num-impostors" min="1" value="1">
+                </div>
+                <button onclick="startAssignment()">¡Listo! Iniciar Asignación</button>
+                <p id="error-message" style="color: red; margin-top: 10px;"></p>
+            </div>
+        </section>
+
+<section id="role-assignment" style="display:none;">
+            <h2>2. Revelación de Rol</h2>
+            <p>Participante <span id="current-player">1</span> de <span id="total-players">0</span>: Toca la carta para ver tu rol. ¡Que nadie vea tu pantalla!</p>
+            
+            <div id="role-card" class="role-card" onclick="flipCard()">
+                <div class="card-inner">
+                    <div class="card-face card-front">
+                        <p>TOCA PARA REVELAR</p>
+                        <p style="font-size: 0.6em;">Impostor - 412Games</p>
+                    </div>
+                    <div class="card-face card-back">
+                        <p class="role-title" id="card-role"></p>
+                        <p class="role-detail" id="card-detail"></p>
+                    </div>
+                </div>
+            </div>
+
+            <button id="next-player-btn" style="display:none;" onclick="nextPlayer()">Siguiente Jugador</button>
+            <p class="start-message" id="start-game-message" style="display:none;">¡Comiencen el juego en papel!</p>
+            
+            <div id="final-actions" style="display:none; margin-top: 30px;">
+                <button onclick="resetGame()">&#x21BA; Volver a Jugar</button>
+                <button onclick="window.location.href = 'index.html'" style="background-color: #555; color: white;">&#x2715; Salir a la Principal</button>
+            </div>
+            
+        </section>
+        
+    </main>
+    
+    <script src="impostor_data.js"></script> 
+    <script src="impostor_logic.js"></script> 
+    
+</body>
+</html>

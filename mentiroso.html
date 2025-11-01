@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentiroso - 412Games</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body class="dark-mode">
+
+    <main>
+        <h1>Juego: Mentiroso</h1>
+
+        <section id="game-setup">
+            <h2>1. Configuración de la Partida</h2>
+            
+            <div>
+                <h3>Elige la Dificultad:</h3>
+                <button onclick="selectDifficulty('Facil')">Fácil</button>
+                <button onclick="selectDifficulty('Mediano')">Mediano</button>
+                <button onclick="selectDifficulty('Dificil')">Difícil</button>
+            </div>
+            <p style="margin-top: 15px;">Dificultad seleccionada: <span id="selected-difficulty" style="color: var(--primary-color);">---</span></p>
+
+            <div style="margin-top: 30px;">
+                <h3>Número de Jugadores:</h3>
+                <input type="number" id="num-players" min="2" max="10" value="4" style="padding: 8px; font-size: 1.1em; width: 80px; text-align: center; border-radius: 5px; border: 1px solid var(--primary-color); background-color: var(--bg-dark); color: var(--text-light);">
+            </div>
+
+            <button onclick="startGameSetup()" style="margin-top: 20px;">¡Listo! Comenzar el Juego</button>
+            <p id="setup-error-message" style="color: red; margin-top: 10px;"></p>
+        </section>
+
+        <section id="game-interface" style="display:none;">
+            <h2>2. ¡A Jugar!</h2>
+            
+            <div id="current-phrase">
+                <p id="phrase-display">-- Haz clic en "Siguiente Frase" para comenzar --</p>
+            </div>
+
+            <button onclick="loadNewPhrase()" style="margin-bottom: 30px;">Siguiente Frase</button>
+            
+            <h3>Marcador:</h3>
+            <div id="player-score-list" class="player-list">
+                </div>
+
+            <div id="game-controls">
+                <button onclick="showResults()">🏆 Resultados</button>
+                <button onclick="window.location.href = 'index.html'" style="background-color: #555; color: white;">&#x2715; Salir</button>
+                <button onclick="resetFullGame()" style="background-color: #d85; color: white;">&#x21BA; Reset Total</button>
+            </div>
+        </section>
+
+        <div id="results-modal" class="modal"> 
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeResultsModal()">&times;</span>
+                <h3>🏆 Resultados</h3>
+                <ul id="results-list" style="list-style: none; padding: 0;"></ul>
+            </div>
+        </div>
+
+    </main>
+    
+    <script src="mentiroso_data.js"></script> 
+    <script src="mentiroso_logic.js"></script> 
+    
+</body>
+</html>

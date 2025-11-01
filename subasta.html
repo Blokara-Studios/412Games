@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subasta de Fichajes - 412Games</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body class="dark-mode">
+
+    <main>
+        <h1>Subasta de Fichajes</h1>
+
+        <section id="auction-setup">
+            <h2>1. Configuración de la Subasta</h2>
+            
+            <div style="margin-bottom: 20px;">
+                <label for="num-players">Número de Jugadores (Participantes):</label>
+                <input type="number" id="num-players" min="2" max="10" value="4" style="padding: 8px; font-size: 1.1em; width: 80px; text-align: center; margin-left: 10px;">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label for="initial-budget">Presupuesto Inicial (Millones):</label>
+                <input type="number" id="initial-budget" min="100" max="1000" value="500" style="padding: 8px; font-size: 1.1em; width: 100px; text-align: center; margin-left: 10px;">
+                <p style="font-size: 0.8em; color: #888;">(Máximo 1000 millones)</p>
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <label for="player-type">Tipo de Jugadores:</label>
+                <select id="player-type" style="padding: 8px; font-size: 1.1em; margin-left: 10px;">
+                    <option value="Actuales">Jugadores Actuales</option>
+                    <option value="Leyendas">Leyendas</option>
+                </select>
+            </div>
+
+            <button onclick="startAuctionSetup()">¡Listo! Iniciar Subasta</button>
+            <p id="setup-error-message" style="color: red; margin-top: 10px;"></p>
+        </section>
+
+        <section id="auction-interface" style="display:none;">
+            <h2>2. Presupuestos y Subasta</h2>
+
+            <h3 id="round-info" style="color: var(--primary-color);">Ronda: GK - Jugador 1 de 5</h3>
+            
+            <div id="player-board" class="player-board">
+                </div>
+            
+            <hr style="border-color: #333;">
+
+            <div id="auction-player-card">
+                <p id="current-player-position">GK (Arquero)</p>
+                <p id="current-player-type" style="font-size: 0.9em;">Jugador Actual</p>
+                <h3 id="current-player-name">-- Jugador --</h3>
+                
+                <label for="player-price-input">Precio de Fichaje (M):</label>
+                <input type="number" id="player-price-input" value="50" min="50">
+            </div>
+
+            <div class="auction-actions" id="auction-controls-buttons" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                <select id="buyer-select" style="padding: 10px; font-size: 1em;">
+                    <option value="">-- Elige Comprador --</option>
+                    </select>
+                <button onclick="completeTransfer()">&#128184; Vender/Fichar</button>
+                <button id="skip-button" onclick="skipPlayer()" style="background-color: #cc4444;">&#x2715; Pasar (1 Restante)</button>
+            </div>
+            
+            <p id="auction-message" style="color: red; margin-top: 15px;"></p>
+
+            <div id="game-controls" style="margin-top: 40px;">
+                <button id="final-results-button" onclick="showFinalResults()" style="display:none;">&#127942; Mostrar Resultados</button>
+                <button onclick="window.location.href = 'index.html'" style="background-color: #555; color: white;">&#x2715; Salir</button>
+            </div>
+
+        </section>
+
+        <div id="results-modal" class="modal">
+            <div class="modal-content" style="max-width: 800px;">
+                <span class="close-btn" onclick="closeResultsModal()">&times;</span>
+                <h3>&#127942; Plantillas Finales</h3>
+                <div id="final-results-content">
+                    </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="subasta_data.js"></script> 
+    <script src="subasta_logic.js"></script> 
+    
+</body>
+</html>
